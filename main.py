@@ -16,8 +16,6 @@ def display_products(store_object):
     # in each loop: product_number is the visible number, starting at 1,
     # and product is the current Product object from the list.
     for product_number, product in enumerate(active_products, start=1):
-        # end="" prevents a line break, so the product number and the
-        # output from Product.show() appear together on the same line.
         print(f"{product_number}. ", end="")
         product.show()
 
