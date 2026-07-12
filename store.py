@@ -1,6 +1,3 @@
-import products
-
-
 class Store:
     """Represents a store that manages a list of products."""
 
