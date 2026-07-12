@@ -12,16 +12,14 @@ def display_products(store_object):
 
     print("------")
 
-    # range(len(active_products)) creates the valid Python list indexes: 0, 1, 2...
-    for product_index in range(len(active_products)):
-        # Python list indexes start at 0, but the product numbers shown
-        # to the user should start at 1. Adding 1 creates the visible
-        # product number without changing the actual list index.
-        product_number = product_index + 1
-
-        # product_index accesses the matching Product object in the active_products list.
+    # enumerate() goes through active_products and returns two values
+    # in each loop: product_number is the visible number, starting at 1,
+    # and product is the current Product object from the list.
+    for product_number, product in enumerate(active_products, start=1):
+        # end="" prevents a line break, so the product number and the
+        # output from Product.show() appear together on the same line.
         print(f"{product_number}. ", end="")
-        active_products[product_index].show()
+        product.show()
 
     print("------")
 
@@ -48,8 +46,8 @@ def make_order(store_object):
 
     print("When you want to finish order, enter empty text.")
 
-    # Allow the user to add several products before completing
-    # and processing the complete order.
+    # Allow the user to add several products before completing and
+    # processing the complete order.
     while True:
         product_number_text = input(
             "Which product # do you want? "
@@ -63,8 +61,8 @@ def make_order(store_object):
             break
 
         try:
-            # Convert both entries into integers so they can be used as a product number and
-            # as the quantity that the customer wants to buy.
+            # Convert both entries into integers. They are then used as
+            # the product number and the requested purchase quantity.
             product_number = int(product_number_text)
             quantity = int(quantity_text)
 
@@ -98,7 +96,7 @@ def make_order(store_object):
         selected_product = active_products[product_index]
 
         # A Product object can be selected more than once before the
-        # order is completed. Add the quantities already requested for
+        # order is completed. Add quantities already requested for
         # this object so the combined amount can be checked.
         quantity_already_requested = 0
 
@@ -121,7 +119,7 @@ def make_order(store_object):
             print()
             continue
 
-        # Add one tuple containing the selected Product object and the
+        # Add a tuple containing the selected Product object and the
         # requested quantity. Store.order() processes every tuple later.
         shopping_list.append(
             (selected_product, quantity)
@@ -198,7 +196,7 @@ def start(store_object):
 def main():
     """Create the initial inventory and start the store program."""
 
-    # Create Product objects
+    # Create the Product objects for the initial store inventory.
     product_list = [
         products.Product(
             "MacBook Air M2",

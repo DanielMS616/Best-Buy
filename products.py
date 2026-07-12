@@ -85,36 +85,3 @@ class Product:
 
         # Return the complete price of this purchase.
         return self.price * quantity
-
-
-def main():
-    """Test the Product class with the examples from the assignment."""
-
-    # Create two product instances.
-    bose = Product(
-        "Bose QuietComfort Earbuds",
-        price=250,
-        quantity=500
-    )
-    mac = Product(
-        "MacBook Air M2",
-        price=1450,
-        quantity=100
-    )
-
-    # Test purchases and automatic product deactivation.
-    print(bose.buy(50))
-    print(mac.buy(100))
-    print(mac.is_active())
-
-    # Display the remaining product quantities.
-    bose.show()
-    mac.show()
-
-    # Test changing the stock quantity manually.
-    bose.set_quantity(1000)
-    bose.show()
-
-
-if __name__ == "__main__":
-    main()
